@@ -7,7 +7,7 @@ import { loadSubreddit } from './actions/subredditActionCreators.js';
 
 import ListingItem from './components/ListingItem.js';
 
-class App extends Component {
+export class App extends Component {
 
   componentWillMount() {
     this.props.loadSubreddit();
@@ -30,6 +30,13 @@ class App extends Component {
     );
   }
 }
+
+App.defaultProps = {
+  loadSubreddit: () => {},
+  data: {
+    children: [],
+  }
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
