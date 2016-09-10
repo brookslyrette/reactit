@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #888;
 }
 
 .App-logo {
@@ -21,4 +22,11 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.App .item-index {
+  line-height: 80px;
+}
+
+.App .item-vote {
 }

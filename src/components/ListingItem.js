@@ -30,21 +30,22 @@ export class ListingItem extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-1">
-          {this.props.index + 1} - {this.props.item.score}
+        <div className="col-md-1 item-index">{this.props.index + 1}</div>
+        <div className="col-md-1 item-vote">
+          ⇧ <br/>
+          {this.props.item.score} <br/>
+          ⇩ <br/>
         </div>
         <div className="col-md-1">
           {this.renderPreview()}
         </div>
-        <div className="col-md-10 text-xs-left">
+        <div className="col-md-9 text-xs-left">
           <h5>
             <a href={this.props.item.url}>{this.props.item.title}</a> <small>({this.props.item.domain})</small>
           </h5>
-          <p>
-            submitted <TimeAgo date={this.props.item.created_utc * 1000} /> ago by {this.props.item.author} to <a onClick={this.subRedditClick}>/r/{this.props.item.subreddit}</a>
-          </p>
-          <p>
-            {this.props.item.num_comments} Comments
+          <p className="small">
+            submitted <TimeAgo date={this.props.item.created_utc * 1000} /> ago by {this.props.item.author} to <a onClick={this.subRedditClick}>/r/{this.props.item.subreddit}</a> <br/>
+          <strong>{this.props.item.num_comments} Comments</strong>
           </p>
         </div>
       </div>
