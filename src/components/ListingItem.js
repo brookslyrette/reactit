@@ -5,12 +5,22 @@ import { loadSubreddit } from '../actions/subredditActionCreators.js';
 
 import TimeAgo from 'react-timeago'
 
-class ListingItem extends Component {
+export class ListingItem extends Component {
 
   constructor(props) {
     super(props);
 
     this.subRedditClick = () => this._subRedditClick();
+    this.renderPreview = () => this._renderPreview();
+  }
+
+  _renderPreview() {
+    if (this.props.item.thumbnail && this.props.item.thumbnail.startsWith('http')) {
+      return <img className="img-fluid" alt="item preview" src={this.props.item.thumbnail}/>
+    }
+    else {
+      return <img className="img-fluid" alt="item preview" src="http://placehold.it/76x76"/>
+    }
   }
 
   _subRedditClick() {
@@ -24,7 +34,7 @@ class ListingItem extends Component {
           {this.props.index + 1} - {this.props.item.score}
         </div>
         <div className="col-md-1">
-          <img className="img-fluid" alt="item preview" src={this.props.item.thumbnail}/>
+          {this.renderPreview()}
         </div>
         <div className="col-md-10 text-xs-left">
           <h5>
