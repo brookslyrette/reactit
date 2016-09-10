@@ -14,15 +14,23 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.props.data);
+    console.log(this.props);
     return (
       <div className="App container-fluid">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+        <div>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active">
+              <a onClick={this.props.loadReddit}>Home</a>
+            </li>
+            <li className="breadcrumb-item active">{this.props.reddit}</li>
+          </ol>
+        </div>
         <div className="App-intro">
-          {this.props.data.children.map((item, i) => {
+          {this.props.items.map((item, i) => {
             return <ListingItem key={item.data.id} item={item.data} index={i} />
           })}
         </div>
@@ -33,14 +41,13 @@ export class App extends Component {
 
 App.defaultProps = {
   loadReddit: () => {},
-  data: {
-    children: [],
-  }
+  items: []
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state.data
+    items: state.data.children,
+    reddit: state.reddit,
   }
 }
 

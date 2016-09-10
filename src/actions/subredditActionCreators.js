@@ -8,6 +8,7 @@ export function loadReddit(type = 'hot') {
     .then(json => dispatch({
       type: LOAD_SUBREDDIT,
       data: json,
+      reddit: 'Front Page',
     }))
 }
 
@@ -17,5 +18,6 @@ export function loadSubreddit(name) {
     .then(json => dispatch({
       type: LOAD_SUBREDDIT,
       data: json,
+      reddit: name,
     }))
 }
