@@ -4,7 +4,7 @@ import ListingItem from './ListingItem.js';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ListingItem item={{
+  ReactDOM.render(<ListingItem index={0} item={{
     thumbnail: '',
     url: '',
     title: '',

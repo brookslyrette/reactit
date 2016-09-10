@@ -22,8 +22,8 @@ export class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div className="App-intro">
-          {this.props.data.children.map((item) => {
-            return <ListingItem key={item.data.id} item={item.data} />
+          {this.props.data.children.map((item, i) => {
+            return <ListingItem key={item.data.id} item={item.data} index={i} />
           })}
         </div>
       </div>
