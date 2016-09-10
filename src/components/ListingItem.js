@@ -57,6 +57,7 @@ ListingItem.propTypes = {
   item: React.PropTypes.object,
   index: React.PropTypes.number,
 };
+
 const mapStateToProps = (state, ownProps) => {
   return {}
 }
