@@ -3,14 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
 
-import { loadSubreddit } from './actions/subredditActionCreators.js';
+import { loadReddit } from './actions/subredditActionCreators.js';
 
 import ListingItem from './components/ListingItem.js';
 
 export class App extends Component {
 
   componentWillMount() {
-    this.props.loadSubreddit();
+    this.props.loadReddit();
   }
 
   render() {
@@ -32,7 +32,7 @@ export class App extends Component {
 }
 
 App.defaultProps = {
-  loadSubreddit: () => {},
+  loadReddit: () => {},
   data: {
     children: [],
   }
@@ -46,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    loadSubreddit: () => dispatch(loadSubreddit()),
+    loadReddit: () => dispatch(loadReddit()),
   }
 }
 
