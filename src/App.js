@@ -16,7 +16,7 @@ export class App extends Component {
   render() {
     console.log(this.props.data);
     return (
-      <div className="App">
+      <div className="App container-fluid">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
