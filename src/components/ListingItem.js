@@ -22,12 +22,19 @@ export default class ListingItem extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-1 item-index">{this.props.index + 1}</div>
-        <div className="col-md-1 item-vote">
-          ⇧ <br/>
-          {this.props.item.score} <br/>
-          ⇩ <br/>
+        <div className="col-md-1">
+          <div className="row">
+            <div className="col-md-1 item-index">
+              {this.props.index + 1}
+            </div>
+            <div className="col-md-1 item-vote">
+              ⇧ <br/>
+              {this.props.item.score} <br/>
+              ⇩ <br/>
+            </div>
+          </div>
         </div>
+
         <div className="col-md-1">
           {this.renderPreview()}
         </div>

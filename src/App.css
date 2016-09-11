@@ -32,12 +32,19 @@
 }
 
 .App .item-index {
-  line-height: 80px;
+  line-height: 72px;
 }
 
 .App .item-vote {
+  font-weight: bolder;
+  text-align: center;
+  width: 75px;
 }
 
 .App .type-selector {
   margin-bottom: 16px;
+}
+
+.load-more {
+  margin-bottom: 15px;
 }
