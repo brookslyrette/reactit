@@ -8,7 +8,7 @@ export default class App extends Component {
       <div className="App container-fluid">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <strong>Reactit!</strong> An Example ReactJs Reddit front-end
         </div>
         {this.props.children}
       </div>
