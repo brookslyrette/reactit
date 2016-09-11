@@ -8,10 +8,20 @@
   height: 80px;
 }
 
+.App-reddit-selector {
+  background-color: #555;
+  text-align: left;
+  padding: 5px 10px;
+}
+
+.App-reddit-selector a {
+  color: white;
+}
+
 .App-header {
   background-color: #222;
   height: 80px;
-  color: white;
+  color: #eee;
   text-align: left;
   font-size: large;
 }

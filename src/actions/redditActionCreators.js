@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 export const LOAD_SUBREDDIT = 'LOAD_SUBREDDIT';
 export const LOAD_MORE_ITEMS = 'LOAD_MORE_ITEMS';
 export const CHANGE_TYPE = 'CHANGE_TYPE';
+export const DEFAULT_REDDITS = 'DEFAULT_REDDITS';
 
 export function changeType(type) {
   return (dispatch) => dispatch({
@@ -45,6 +46,15 @@ export function loadMoreSubredditItems(name, type = 'hot', after) {
     .then(response => response.json())
     .then(json => dispatch({
       type: LOAD_MORE_ITEMS,
+      data: json,
+    }))
+}
+
+export function loadDefaultReddits() {
+  return (dispatch) => fetch('https://www.reddit.com/subreddits/default.json?limit=15')
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: DEFAULT_REDDITS,
       data: json,
     }))
 }

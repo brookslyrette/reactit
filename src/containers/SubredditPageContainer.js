@@ -17,6 +17,12 @@ export class SubredditPageContainer extends Component {
     this.props.loadSubreddit(this.props.params.name, this.props.type);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.name !== nextProps.params.name) {
+      this.props.loadSubreddit(nextProps.params.name, this.props.type);
+    }
+  }
+
   _changeType(type) {
     this.props.changeListingType(type);
     this.props.loadSubreddit(this.props.params.name, type);
@@ -28,7 +34,7 @@ export class SubredditPageContainer extends Component {
 
   render() {
     return (
-      <Listing items={this.props.items} reddit={this.props.reddit}
+      <Listing items={this.props.items} reddit={this.props.params.name}
         type={this.props.type} changeType={this.changeType}
         loadMore={this.loadMore}
       />

@@ -15,7 +15,7 @@ export default class ListingItem extends Component {
       return <img className="img-fluid" alt="item preview" src={this.props.item.thumbnail}/>
     }
     else {
-      return <img className="img-fluid" alt="item preview" src="http://placehold.it/76x76"/>
+      return <img className="img-fluid" alt="item preview" src="http://placehold.it/78x76"/>
     }
   }
 
