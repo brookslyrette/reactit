@@ -27,7 +27,6 @@ export function loadMoreItems(type = 'hot', after) {
     .then(json => dispatch({
       type: LOAD_MORE_ITEMS,
       data: json,
-      reddit: 'Front Page',
     }))
 }
 
@@ -37,6 +36,7 @@ export function loadSubreddit(name, type = 'hot') {
     .then(json => dispatch({
       type: LOAD_SUBREDDIT,
       data: json,
+      reddit: name,
     }))
 }
 
