@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-
-import { connect } from 'react-redux'
-import { loadSubreddit } from '../actions/subredditActionCreators.js';
+import { Link } from 'react-router'
 
 import TimeAgo from 'react-timeago'
 
-export class ListingItem extends Component {
+export default class ListingItem extends Component {
 
   constructor(props) {
     super(props);
-
-    this.subRedditClick = () => this._subRedditClick();
     this.renderPreview = () => this._renderPreview();
   }
 
@@ -21,10 +17,6 @@ export class ListingItem extends Component {
     else {
       return <img className="img-fluid" alt="item preview" src="http://placehold.it/76x76"/>
     }
-  }
-
-  _subRedditClick() {
-    this.props.loadSubreddit(this.props.item.subreddit);
   }
 
   render() {
@@ -44,8 +36,9 @@ export class ListingItem extends Component {
             <a href={this.props.item.url}>{this.props.item.title}</a> <small>({this.props.item.domain})</small>
           </h5>
           <p className="small">
-            submitted <TimeAgo date={this.props.item.created_utc * 1000} /> ago by {this.props.item.author} to <a onClick={this.subRedditClick}>/r/{this.props.item.subreddit}</a> <br/>
-          <strong>{this.props.item.num_comments} Comments</strong>
+            submitted <TimeAgo date={this.props.item.created_utc * 1000} /> ago by {this.props.item.author} to <Link to={`/r/${this.props.item.subreddit}`}>/r/{this.props.item.subreddit}</Link>
+            <br/>
+            <strong>{this.props.item.num_comments} Comments</strong>
           </p>
         </div>
       </div>
@@ -57,15 +50,3 @@ ListingItem.propTypes = {
   item: React.PropTypes.object,
   index: React.PropTypes.number,
 };
-
-const mapStateToProps = (state, ownProps) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    loadSubreddit: (name) => dispatch(loadSubreddit(name)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListingItem);

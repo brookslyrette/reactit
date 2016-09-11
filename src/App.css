@@ -30,3 +30,7 @@
 
 .App .item-vote {
 }
+
+.App .type-selector {
+  margin-bottom: 16px;
+}
