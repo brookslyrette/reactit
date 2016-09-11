@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { loadSubreddit, changeType } from '../actions/redditActionCreators.js';
+import { loadSubreddit, loadMoreSubredditItems, changeType } from '../actions/redditActionCreators.js';
 
 import Listing from '../components/Listing.js';
 
@@ -10,6 +10,7 @@ export class SubredditPageContainer extends Component {
   constructor(props) {
     super(props);
     this.changeType = (type) => this._changeType(type);
+    this.loadMore = () => this._loadMore();
   }
 
   componentWillMount() {
@@ -21,9 +22,16 @@ export class SubredditPageContainer extends Component {
     this.props.loadSubreddit(this.props.params.name, type);
   }
 
+  _loadMore() {
+    this.props.loadMoreSubredditItems(this.props.params.name, this.props.type, this.props.after);
+  }
+
   render() {
     return (
-      <Listing items={this.props.items} reddit={this.props.reddit} type={this.props.type} changeType={this.changeType}/>
+      <Listing items={this.props.items} reddit={this.props.reddit}
+        type={this.props.type} changeType={this.changeType}
+        loadMore={this.loadMore}
+      />
     );
   }
 }
@@ -39,12 +47,14 @@ const mapStateToProps = (state, ownProps) => {
     items: state.data.children,
     reddit: state.reddit,
     type: state.type,
+    after: state.data.after,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     loadSubreddit: (name, type) => dispatch(loadSubreddit(name, type)),
+    loadMoreSubredditItems: (name, type, after) => dispatch(loadMoreSubredditItems(name, type, after)),
     changeListingType: (type) => dispatch(changeType(type)),
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { loadReddit, changeType } from '../actions/redditActionCreators.js';
+import { loadReddit, loadMoreItems, changeType } from '../actions/redditActionCreators.js';
 
 import Listing from '../components/Listing.js';
 
@@ -10,6 +10,7 @@ export class FrontPageContainer extends Component {
   constructor(props) {
     super(props);
     this.changeType = (type) => this._changeType(type);
+    this.loadMore = () => this._loadMore();
   }
 
   componentWillMount() {
@@ -21,9 +22,16 @@ export class FrontPageContainer extends Component {
     this.props.loadReddit(type);
   }
 
+  _loadMore() {
+    this.props.loadMoreItems(this.props.type, this.props.after);
+  }
+
   render() {
     return (
-      <Listing items={this.props.items} reddit={this.props.reddit} type={this.props.type} changeType={this.changeType}/>
+      <Listing items={this.props.items} reddit={this.props.reddit}
+        type={this.props.type} changeType={this.changeType}
+        loadMore={this.loadMore}
+      />
     );
   }
 }
@@ -39,12 +47,14 @@ const mapStateToProps = (state, ownProps) => {
     items: state.data.children,
     reddit: state.reddit,
     type: state.type,
+    after: state.data.after,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     loadReddit: (type) => dispatch(loadReddit(type)),
+    loadMoreItems: (type, after) => dispatch(loadMoreItems(type, after)),
     changeListingType: (type) => dispatch(changeType(type)),
   }
 }

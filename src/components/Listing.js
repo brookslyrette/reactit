@@ -23,6 +23,7 @@ export default class Listing extends Component {
             return <ListingItem key={item.data.id} item={item.data} index={i} />
           })}
         </div>
+        <button type="button" className="btn btn-secondary btn-lg" onClick={this.props.loadMore}>Load More...</button>
       </div>
     );
   }
