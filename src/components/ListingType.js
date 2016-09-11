@@ -7,6 +7,7 @@ export default class ListingType extends Component {
     this.loadNew = () => this._changeType('new');
     this.loadHot = () => this._changeType('hot');
     this.loadRising = () => this._changeType('rising');
+    this.loadControversial = () => this._changeType('controversial');
     this.loadTop = () => this._changeType('top');
   }
 
@@ -26,6 +27,9 @@ export default class ListingType extends Component {
           </li>
           <li className="nav-item">
             <a className={'nav-link ' + (this.props.type === 'rising' ? 'active' : '')} href="#" onClick={this.loadRising}>Rising</a>
+          </li>
+          <li className="nav-item">
+            <a className={'nav-link ' + (this.props.type === 'controversial' ? 'active' : '')} href="#" onClick={this.loadControversial}>Controversial</a>
           </li>
           <li className="nav-item">
             <a className={'nav-link ' + (this.props.type === 'top' ? 'active' : '')} href="#" onClick={this.loadTop}>Top</a>
