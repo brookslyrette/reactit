@@ -27,6 +27,8 @@ export function subreddit(state = initialState, action) {
         type: action.newType,
       });
     case DEFAULT_REDDITS:
+      const reddits = action.data.data.children;
+      reddits.sort((a, b) => a.data.display_name.localeCompare(b.data.display_name));
       return Object.assign({}, state, {reddits: action.data.data.children});
     default:
       return state;
