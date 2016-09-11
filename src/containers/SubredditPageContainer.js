@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { loadSubreddit, changeType } from '../actions/subredditActionCreators.js';
+import { loadSubreddit, changeType } from '../actions/redditActionCreators.js';
 
 import Listing from '../components/Listing.js';
 

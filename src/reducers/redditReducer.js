@@ -1,4 +1,4 @@
-import { LOAD_SUBREDDIT, CHANGE_TYPE } from '../actions/subredditActionCreators.js';
+import { LOAD_SUBREDDIT, CHANGE_TYPE } from '../actions/redditActionCreators.js';
 
 const initialState = {
   data: {

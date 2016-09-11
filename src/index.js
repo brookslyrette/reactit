@@ -12,7 +12,7 @@ import SubredditPageContainer from './containers/SubredditPageContainer.js';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import { subreddit } from './reducers/subredditReducer.js';
+import { subreddit } from './reducers/redditReducer.js';
 
 const store = createStore(subreddit, applyMiddleware(thunk));
 
