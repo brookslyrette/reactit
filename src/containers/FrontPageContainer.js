@@ -43,11 +43,12 @@ FrontPageContainer.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
-    items: state.data.children,
+    items: state.items,
     reddit: state.reddit,
     type: state.type,
-    after: state.data.after,
+    after: state.after,
   }
 }
 

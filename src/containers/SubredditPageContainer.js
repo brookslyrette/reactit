@@ -50,10 +50,10 @@ SubredditPageContainer.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    items: state.data.children,
+    items: state.items,
     reddit: state.reddit,
     type: state.type,
-    after: state.data.after,
+    after: state.after,
   }
 }
 
