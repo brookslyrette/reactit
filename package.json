@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "chai": "^3.5.0",
+    "deep-freeze": "0.0.1",
     "react-scripts": "0.4.1"
   },
   "dependencies": {
