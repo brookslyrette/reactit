@@ -30,16 +30,26 @@ export default class ListingItem extends Component {
 
   _renderExpanded() {
     if (this.props.item.expanded) {
-      return (
-        <p className="lead">
-          <ReactMarkdown source={this.props.item.selftext} />
-        </p>
-      );
+      if (this.props.item.selftext) {
+        return (
+          <p className="lead">
+            <ReactMarkdown source={this.props.item.selftext} />
+          </p>
+        );
+      }
+      else if ((/\.(gif|jpg|jpeg|tiff|png)$/i).test(this.props.item.url)) {
+          return (
+            <div>
+              <img alt={this.props.item.title} src={this.props.item.url} className="img-fluid" />
+            </div>
+          );
+      }
     }
+    return '';
   }
 
   _renderExpander() {
-    if (this.props.item.selftext !== '') {
+    if (this.props.item.selftext !== '' || (/\.(gif|jpg|jpeg|tiff|png)$/i).test(this.props.item.url)) {
       return (
         <button onClick={this.expand} type="button" className="btn btn-secondary expander">
           {!this.props.item.expanded ? '+' : '-'}

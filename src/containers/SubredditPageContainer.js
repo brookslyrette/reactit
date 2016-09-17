@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { loadSubreddit, loadMoreSubredditItems, changeType } from '../actions/redditActionCreators.js';
+import { loadSubreddit, loadMoreSubredditItems, expandItem, changeType } from '../actions/redditActionCreators.js';
 
 import Listing from '../components/Listing.js';
 
@@ -36,7 +36,7 @@ export class SubredditPageContainer extends Component {
     return (
       <Listing items={this.props.items} reddit={this.props.params.name}
         type={this.props.type} changeType={this.changeType}
-        loadMore={this.loadMore}
+        loadMore={this.loadMore} expandItem={this.props.expandItem}
       />
     );
   }
@@ -62,6 +62,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     loadSubreddit: (name, type) => dispatch(loadSubreddit(name, type)),
     loadMoreSubredditItems: (name, type, after) => dispatch(loadMoreSubredditItems(name, type, after)),
     changeListingType: (type) => dispatch(changeType(type)),
+    expandItem: (item) => dispatch(expandItem(item)),
   }
 }
 
