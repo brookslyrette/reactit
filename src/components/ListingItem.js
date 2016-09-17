@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
+import ReactMarkdown from 'react-markdown';
 
 import TimeAgo from 'react-timeago'
 
@@ -31,7 +32,7 @@ export default class ListingItem extends Component {
     if (this.props.item.expanded) {
       return (
         <p className="lead">
-          {this.props.item.selftext}
+          <ReactMarkdown source={this.props.item.selftext} />
         </p>
       );
     }
