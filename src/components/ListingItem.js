@@ -7,7 +7,15 @@ export default class ListingItem extends Component {
 
   constructor(props) {
     super(props);
+
     this.renderPreview = () => this._renderPreview();
+    this.renderExpander = () => this._renderExpander();
+    this.renderExpanded = () => this._renderExpanded();
+    this.expand = () => this._expand();
+  }
+
+  _expand() {
+    this.props.expandItem(this.props.item);
   }
 
   _renderPreview() {
@@ -17,6 +25,27 @@ export default class ListingItem extends Component {
     else {
       return <img className="img-fluid" alt="item preview" src="http://placehold.it/78x76"/>
     }
+  }
+
+  _renderExpanded() {
+    if (this.props.item.expanded) {
+      return (
+        <p className="lead">
+          {this.props.item.selftext}
+        </p>
+      );
+    }
+  }
+
+  _renderExpander() {
+    if (this.props.item.selftext !== '') {
+      return (
+        <button onClick={this.expand} type="button" className="btn btn-secondary expander">
+          {!this.props.item.expanded ? '+' : '-'}
+        </button>
+      );
+    }
+    return '';
   }
 
   render() {
@@ -42,11 +71,13 @@ export default class ListingItem extends Component {
           <h5>
             <a href={this.props.item.url}>{this.props.item.title}</a> <small>({this.props.item.domain})</small>
           </h5>
-          <p className="small">
+          {this.renderExpander()}
+          <p className="small clearfix">
             submitted <TimeAgo date={this.props.item.created_utc * 1000} /> ago by {this.props.item.author} to <Link to={`/r/${this.props.item.subreddit}`}>/r/{this.props.item.subreddit}</Link>
             <br/>
             <strong>{this.props.item.num_comments} Comments</strong>
           </p>
+          {this.renderExpanded()}
         </div>
       </div>
     );
@@ -56,4 +87,5 @@ export default class ListingItem extends Component {
 ListingItem.propTypes = {
   item: React.PropTypes.object,
   index: React.PropTypes.number,
+  expandItem: React.PropTypes.func,
 };

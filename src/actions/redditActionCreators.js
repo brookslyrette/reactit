@@ -4,6 +4,7 @@ export const LOAD_SUBREDDIT = 'LOAD_SUBREDDIT';
 export const LOAD_MORE_ITEMS = 'LOAD_MORE_ITEMS';
 export const CHANGE_TYPE = 'CHANGE_TYPE';
 export const DEFAULT_REDDITS = 'DEFAULT_REDDITS';
+export const EXPAND_ITEM = 'EXPAND_ITEM';
 
 export function changeType(type) {
   return (dispatch) => dispatch({
@@ -11,6 +12,14 @@ export function changeType(type) {
       newType: type,
     });
 }
+
+export function expandItem(item) {
+  return (dispatch) => dispatch({
+      type: EXPAND_ITEM,
+      item,
+    });
+}
+
 
 export function loadReddit(type = 'hot') {
   return (dispatch) => fetch(`https://www.reddit.com/${type}.json`)

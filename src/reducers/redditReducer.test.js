@@ -99,3 +99,54 @@ it('handles DEFAULT_REDDITS', () => {
 
   assert.deepEqual(expectedState, newState);
 });
+
+it('handles EXPAND_ITEM', () => {
+  const expandItemInitialState = {
+    type: 'hot',
+    reddit: 'foo',
+    items: [
+      {
+        data: {
+          id: '1',
+        }
+      },
+      {
+        data: {
+          id: '2',
+        }
+      }
+    ],
+  }
+
+  deepFreeze(expandItemInitialState);
+
+  const expectedState = {
+    type: 'hot',
+    reddit: 'foo',
+    items: [
+      {
+        data: {
+          id: '1',
+          expanded: true,
+        }
+      },
+      {
+        data: {
+          id: '2',
+        }
+      },
+    ],
+  }
+
+  const newState = subreddit(expandItemInitialState, {
+    type: 'EXPAND_ITEM',
+    item: {
+      id: '1',
+    },
+  });
+
+  // assert.deepEqual(expectedState, newState);
+  assert.deepEqual(expectedState.items[0], newState.items[0]);
+  assert.deepEqual(expectedState.items[1], newState.items[1]);
+  assert.deepEqual(expectedState, newState);
+});

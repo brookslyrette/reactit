@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { loadReddit, loadMoreItems, changeType } from '../actions/redditActionCreators.js';
+import { loadReddit, loadMoreItems, changeType, expandItem } from '../actions/redditActionCreators.js';
 
 import Listing from '../components/Listing.js';
 
@@ -30,7 +30,7 @@ export class FrontPageContainer extends Component {
     return (
       <Listing items={this.props.items} reddit={this.props.reddit}
         type={this.props.type} changeType={this.changeType}
-        loadMore={this.loadMore}
+        loadMore={this.loadMore} expandItem={this.props.expandItem}
       />
     );
   }
@@ -57,6 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     loadReddit: (type) => dispatch(loadReddit(type)),
     loadMoreItems: (type, after) => dispatch(loadMoreItems(type, after)),
     changeListingType: (type) => dispatch(changeType(type)),
+    expandItem: (item) => dispatch(expandItem(item)),
   }
 }
 

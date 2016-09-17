@@ -1,4 +1,5 @@
-import { LOAD_SUBREDDIT, LOAD_MORE_ITEMS, CHANGE_TYPE, DEFAULT_REDDITS } from '../actions/redditActionCreators.js';
+import { LOAD_SUBREDDIT, LOAD_MORE_ITEMS, EXPAND_ITEM,
+  CHANGE_TYPE, DEFAULT_REDDITS } from '../actions/redditActionCreators.js';
 
 const initialState = {
   items: [],
@@ -31,6 +32,25 @@ export function subreddit(state = initialState, action) {
       const reddits = action.data.children;
       reddits.sort((a, b) => a.data.display_name.localeCompare(b.data.display_name));
       return Object.assign({}, state, {reddits: action.data.children});
+    case EXPAND_ITEM:
+      let item = state.items.find((a) => a.data.id === action.item.id);
+      const index = state.items.indexOf(item);
+
+      let value = true;
+      if (item.data.expanded) {
+        value = false;
+      }
+      const data = Object.assign({}, item.data, { expanded: value });
+
+      return Object.assign({}, state,
+        {
+          items: [
+            ...state.items.slice(0, index),
+            item = Object.assign({}, item, { data }),
+            ...state.items.slice(index + 1),
+          ]
+        }
+      );
     default:
       return state;
   }

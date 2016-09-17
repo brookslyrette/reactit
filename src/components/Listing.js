@@ -17,7 +17,7 @@ const Listing = (props) => (
     <ListingType changeType={props.changeType} type={props.type}/>
     <div className="App-intro">
       {props.items.map((item, i) => {
-        return <ListingItem key={item.data.id} item={item.data} index={i} />
+        return <ListingItem key={item.data.id} item={item.data} index={i} expandItem={props.expandItem}/>
       })}
     </div>
     <button type="button" className="btn btn-secondary btn-lg load-more" onClick={props.loadMore}>Load More...</button>

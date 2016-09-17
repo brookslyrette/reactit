@@ -48,3 +48,8 @@
 .load-more {
   margin-bottom: 15px;
 }
+
+.expander {
+  float: left;
+  margin-right: 15px;
+}
