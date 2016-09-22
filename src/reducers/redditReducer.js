@@ -11,27 +11,25 @@ const initialState = {
 export function subreddit(state = initialState, action) {
   switch (action.type) {
     case LOAD_SUBREDDIT:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         reddit: action.reddit,
         items: action.data.children,
         after: action.data.after,
-      });
+      };
     case LOAD_MORE_ITEMS:
-      const items = state.items.concat(...action.data.children);
-      return Object.assign({}, state,
-        {
+      const items = [...state.items, ...action.data.children];
+      return {
+          ...state,
           items: items,
           after: action.data.after,
-        }
-      );
+        };
     case CHANGE_TYPE:
-      return Object.assign({}, state, {
-        type: action.newType,
-      });
+      return { ...state, type: action.newType };
     case DEFAULT_REDDITS:
       const reddits = action.data.children;
       reddits.sort((a, b) => a.data.display_name.localeCompare(b.data.display_name));
-      return Object.assign({}, state, {reddits: action.data.children});
+      return { ...state, reddits: action.data.children};
     case EXPAND_ITEM:
       let item = state.items.find((a) => a.data.id === action.item.id);
       const index = state.items.indexOf(item);
@@ -40,17 +38,16 @@ export function subreddit(state = initialState, action) {
       if (item.data.expanded) {
         value = false;
       }
-      const data = Object.assign({}, item.data, { expanded: value });
+      const data = { ...item.data, expanded: value };
 
-      return Object.assign({}, state,
-        {
+      return {
+          ...state,
           items: [
             ...state.items.slice(0, index),
-            item = Object.assign({}, item, { data }),
+            {...item, data},
             ...state.items.slice(index + 1),
           ]
-        }
-      );
+        };
     default:
       return state;
   }

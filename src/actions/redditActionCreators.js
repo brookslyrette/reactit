@@ -17,7 +17,6 @@ export const expandItem = (item) => (dispatch) => dispatch({
     item,
   });
 
-
 export const loadReddit = (type = 'hot') => (dispatch) =>
   fetch(`https://www.reddit.com/${type}.json`)
     .then(response => response.json())
