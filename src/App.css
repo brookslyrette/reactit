@@ -53,3 +53,12 @@
   float: left;
   margin-right: 15px;
 }
+
+.items-appear {
+  opacity: 0.01;
+}
+
+.items-appear.items-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
