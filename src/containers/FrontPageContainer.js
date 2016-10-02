@@ -43,11 +43,15 @@ FrontPageContainer.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    items: state.items,
-    reddit: state.reddit,
-    type: state.type,
-    after: state.after,
+  if (state.reddit === 'Front Page') {
+    return {
+      items: state.items,
+      reddit: state.reddit,
+      type: state.type,
+      after: state.after,
+    }
+  } else {
+    return {};
   }
 }
 

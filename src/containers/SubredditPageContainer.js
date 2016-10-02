@@ -49,11 +49,16 @@ SubredditPageContainer.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    items: state.items,
-    reddit: state.reddit,
-    type: state.type,
-    after: state.after,
+  if (state.reddit === ownProps.params.name) {
+    return {
+      items: state.items,
+      reddit: state.reddit,
+      type: state.type,
+      after: state.after,
+    }
+  }
+  else {
+    return {};
   }
 }
 
