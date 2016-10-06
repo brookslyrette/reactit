@@ -10,6 +10,7 @@
   "dependencies": {
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-lazy-load": "^3.0.10",
     "react-markdown": "^2.4.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",

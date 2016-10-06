@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import ReactMarkdown from 'react-markdown';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import LazyLoad from 'react-lazy-load';
 import TimeAgo from 'react-timeago';
 
 export default class ListingItem extends Component {
@@ -21,10 +22,18 @@ export default class ListingItem extends Component {
 
   _renderPreview() {
     if (this.props.item.thumbnail && this.props.item.thumbnail.startsWith('http')) {
-      return <img className="img-fluid" alt="item preview" src={this.props.item.thumbnail}/>
+      return (
+        <LazyLoad>
+          <img className="img-fluid" alt="item preview" src={this.props.item.thumbnail}/>
+        </LazyLoad>
+      );
     }
     else {
-      return <img className="img-fluid" alt="item preview" src="http://placehold.it/78x76"/>
+      return (
+        <LazyLoad>
+          <img className="img-fluid" alt="item preview" src="http://placehold.it/78x76"/>
+        </LazyLoad>
+      );
     }
   }
 
@@ -61,7 +70,8 @@ export default class ListingItem extends Component {
 
   render() {
     return (
-      <ReactCSSTransitionGroup transitionName="items" transitionAppear={true} transitionAppearTimeout={300}>
+      <ReactCSSTransitionGroup transitionEnterTimeout={0} transitionLeaveTimeout={0}
+        transitionName="items" transitionAppear={true} transitionAppearTimeout={300}>
         <div className="row">
           <div className="col-md-1">
             <div className="row">
