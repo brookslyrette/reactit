@@ -4,6 +4,11 @@ import ReactMarkdown from 'react-markdown';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import LazyLoad from 'react-lazy-load';
 import TimeAgo from 'react-timeago';
+import YouTube from 'react-youtube';
+
+const youtubeUrl = /http[s]?:\/\/(www\.)?youtu(\.be|be\.com).*/i;
+const imageUrl = /\.(gif|jpg|jpeg|tiff|png)$/i;
+const youtubeShortUrl = /http[s]?:\/\/(www\.)?youtu\.be\/(.*)/i;
 
 export default class ListingItem extends Component {
 
@@ -46,19 +51,36 @@ export default class ListingItem extends Component {
           </p>
         );
       }
-      else if ((/\.(gif|jpg|jpeg|tiff|png)$/i).test(this.props.item.url)) {
+      else if ((imageUrl).test(this.props.item.url)) {
           return (
             <div>
               <img alt={this.props.item.title} src={this.props.item.url} className="img-fluid" />
             </div>
           );
       }
+      else if (youtubeUrl.test(this.props.item.url)) {
+        //parse the videoId
+        let videoId = 'Its503VP5zo';
+        if (youtubeShortUrl.test(this.props.item.url)) { //https://youtu.be/{id}
+          videoId = youtubeShortUrl.exec(this.props.item.url)[2];
+        }
+        else { //https://www.youtube.com/watch?v={id}
+          const urlParts = this.props.item.url.split('watch?v=');
+          videoId = urlParts[urlParts.length - 1];
+        }
+        return (
+          <div>
+            <YouTube videoId={videoId}></YouTube>
+          </div>
+        );
+      }
     }
     return '';
   }
 
   _renderExpander() {
-    if (this.props.item.selftext !== '' || (/\.(gif|jpg|jpeg|tiff|png)$/i).test(this.props.item.url)) {
+    if (this.props.item.selftext !== '' || (imageUrl).test(this.props.item.url) ||
+        youtubeUrl.test(this.props.item.url)) {
       return (
         <button onClick={this.expand} type="button" className="btn btn-secondary expander">
           {!this.props.item.expanded ? '+' : '-'}
