@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
+import { Provider } from 'react-redux';
 
 import App from './App';
 import './index.css';
-
-import FrontPageContainer from './containers/FrontPageContainer.js';
-import SubredditPageContainer from './containers/SubredditPageContainer.js';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -18,12 +14,7 @@ const store = createStore(subreddit, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route component={App}>
-        <Route path="/" component={FrontPageContainer}/>
-        <Route path="/r/:name" component={SubredditPageContainer} />
-      </Route>
-    </Router>
+    <App/>
   </Provider>,
   document.getElementById('root')
 );
