@@ -91,6 +91,8 @@ export default class ListingItem extends Component {
   }
 
   render() {
+    //fix for '&amp;' in reddituploads.com url's.
+    const url = (this.props.item.url).replace(/&amp;/g, '&');
     return (
       <ReactCSSTransitionGroup transitionEnterTimeout={0} transitionLeaveTimeout={0}
         transitionName="items" transitionAppear={true} transitionAppearTimeout={300}>
@@ -112,7 +114,7 @@ export default class ListingItem extends Component {
           </div>
           <div className="col-md-9 text-xs-left">
             <h5>
-              <a href={this.props.item.url}>{this.props.item.title}</a> <small>({this.props.item.domain})</small>
+              <a href={url}>{this.props.item.title}</a> <small>({this.props.item.domain})</small>
             </h5>
             {this.renderExpander()}
             <p className="small clearfix">
