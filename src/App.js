@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router'
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Match } from 'react-router';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import FrontPageContainer from './containers/FrontPageContainer.js';
 import SubredditPageContainer from './containers/SubredditPageContainer.js';
@@ -19,8 +18,8 @@ const App = (props) => (
         <img src={logo} className="App-logo" alt="logo" />
         <strong>Reactit!</strong> An Example ReactJs Reddit front-end
       </div>
-      <Match exactly pattern="/" component={FrontPageContainer}/>
-      <Match exactly pattern="/r/:name" component={SubredditPageContainer} />
+      <Route exact path="/" component={FrontPageContainer}/>
+      <Route path="/r/:name" component={SubredditPageContainer} />
     </div>
   </BrowserRouter>
 );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import LazyLoad from 'react-lazy-load';
